@@ -1,0 +1,146 @@
+---
+title: "How I Model BDC Net Investment Income"
+slug: "bdc-net-investment-income-methodology"
+company: "Methodology"
+ticker: "N/A"
+exchange: "N/A"
+sector: "Methodology"
+industry: "Business Development Companies"
+analysisType: "method-note"
+date: "2026-03-01"
+dataAsOf: "2026-03-01"
+author: "Jon Anderson"
+readingTime: 12
+status: "published"
+valuation:
+  currentPrice: 0
+  currency: "USD"
+  bearCase: 0
+  baseCase: 0
+  bullCase: 0
+  methodology: "N/A — Method Note"
+disclosure: "No position in any securities discussed. This is a methodology note."
+tags:
+  - "Methodology"
+  - "BDC"
+  - "Income"
+  - "Modeling"
+---
+
+## Overview
+
+Business Development Companies (BDCs) are a unique asset class that sit at the intersection of fixed income and private equity. Modeling net investment income (NII) — the primary driver of dividend sustainability and valuation — requires understanding the mechanics of a leveraged credit portfolio. This note documents the analytical framework I apply to every BDC I cover.
+
+## What NII Actually Measures
+
+NII is the BDC's operating earnings from its investment portfolio, calculated as:
+
+**NII = Total Investment Income − Operating Expenses − Interest Expense**
+
+Total investment income includes:
+- Interest income on floating-rate debt (the largest component, typically 70–85%)
+- Fee income (origination fees, amendment fees, prepayment premiums)
+- Dividend income from equity co-investments
+- PIK income (payment-in-kind accruals — non-cash but recognized)
+
+<Callout type="warning" title="PIK Income Scrutiny">
+PIK (payment-in-kind) income is recognized as earned but received in additional securities rather than cash. Heavy PIK concentration (>15% of NII) is a yellow flag — it can mask underlying borrower stress and inflates coverage ratios without improving liquidity.
+</Callout>
+
+## Step 1: Build the Portfolio Yield Model
+
+The starting point is reconstructing the weighted average yield on the debt portfolio:
+
+**Portfolio Yield = Σ(Investment FV × Effective Yield) / Total Portfolio FV**
+
+For floating-rate portfolios (the vast majority of BDC portfolios), effective yield = base rate (SOFR) + spread. I model three components:
+
+1. **Current SOFR:** Use the forward curve for the forecast period
+2. **Portfolio Spread:** Back-calculate from disclosed yield data and SOFR levels at time of origination; apply a floor on SOFR floors (typically 1–2% in credit agreements)
+3. **Yield Drag from Non-Accruals:** Non-accrual investments contribute zero interest income despite their balance. Adjust total portfolio yield downward by: `Non-Accrual % × Average Portfolio Yield`
+
+<FinancialTable
+  headers={["Component", "Typical Range", "Source"]}
+  rows={[
+    ["SOFR (base rate)", "4.3–5.5%", "CME FedWatch / forward curve"],
+    ["Portfolio spread over SOFR", "5.5–7.5%", "BDC earnings supplement"],
+    ["SOFR floor contribution", "0–0.5%", "Portfolio disclosure"],
+    ["Gross portfolio yield", "10.5–13.0%", "Calculated"],
+    ["Non-accrual drag", "(0.1–0.5%)", "Non-accrual %× avg yield"],
+    ["Net effective yield", "10.0–12.5%", "Calculated"],
+  ]}
+  caption="Representative yield decomposition for a diversified BDC"
+/>
+
+## Step 2: Model Operating Expenses
+
+BDC expenses have two components: the management fee structure and G&A / interest expense.
+
+**Management Fees:** Most BDCs charge 1.0–1.75% of gross assets (not net assets). This is an important distinction — management fees scale with leverage, creating an incentive for BDCs to lever up.
+
+- Base management fee: % × average gross assets
+- Incentive fee Part I (income): Typically 20% of pre-incentive NII above a preferred return hurdle (~7% annualized). Some BDCs have "lookback" provisions that limit this.
+- Incentive fee Part II (capital gains): 20% of cumulative realized + unrealized capital gains above cost (usually calculated annually)
+
+<Callout type="insight" title="Incentive Fee Watch">
+Focus on total management + incentive fees as a percentage of NII. A BDC paying >35% of NII in fees is structurally disadvantaged relative to peers charging 25–28%. Fee drag directly reduces dividend capacity.
+</Callout>
+
+**Interest Expense:** BDCs fund their portfolios with a mix of:
+- Revolving credit facilities (floating rate, typically SOFR + 175–225 bps)
+- Unsecured notes (fixed rate, 5–8 year maturities)
+- Baby bonds (exchange-listed, fixed rate)
+
+I model weighted average cost of debt as: `Σ(Facility Balance × Rate) / Total Debt`
+
+## Step 3: Validate Against Regulatory Capital
+
+BDCs are regulated under the Investment Company Act of 1940 and must maintain a debt-to-equity ratio of ≤2.0x (asset coverage ratio ≥150%). The coverage ratio constrains dividend policy and leverage:
+
+**Asset Coverage = Total Assets / Total Debt**
+
+Most well-managed BDCs target 1.65–1.8x coverage (debt/equity of 0.56–0.61x) to maintain a buffer above the regulatory minimum. In my models, I stress this ratio in the bear case by assuming:
+1. A 10–15% decline in portfolio fair values
+2. The resulting covenant headroom contraction
+3. Any required deleveraging that would reduce NII
+
+## Step 4: NII Per Share and Dividend Coverage
+
+Once I have aggregate NII, I convert to per-share:
+
+**NII/Share = Total NII / Weighted Average Shares Outstanding**
+
+Dividend coverage is then straightforward:
+
+**Coverage Ratio = NII/Share / Quarterly Dividend**
+
+I require a minimum 105% coverage in the base case; 95% coverage triggers a downgrade of the dividend sustainability rating. Historical averages for investment-grade BDCs run 108–115%.
+
+## Scenario Construction
+
+<ScenarioTable
+  rows={[
+    { label: "SOFR assumption", bear: "3.0%", base: "4.3%", bull: "5.0%" },
+    { label: "Portfolio yield (net)", bear: "9.8%", base: "11.2%", bull: "12.1%" },
+    { label: "Leverage (debt/equity)", bear: "0.85x", base: "1.10x", bull: "1.20x" },
+    { label: "Non-accrual %", bear: "4.5%", base: "1.5%", bull: "0.5%" },
+    { label: "Fee % of NII", bear: "34%", base: "28%", bull: "25%" },
+    { label: "NII/Share (annualized)", bear: "1.65", base: "2.12", bull: "2.48" },
+    { label: "Dividend coverage", bear: "95%", base: "112%", bull: "130%" },
+  ]}
+/>
+
+## Common Modeling Mistakes
+
+1. **Ignoring PIK accruals:** Treating all interest income as cash-equivalent overstates earnings quality
+2. **Static SOFR:** BDC earnings are highly rate-sensitive; always sensitize to ±100bps SOFR moves
+3. **Gross vs. Net Asset Base:** Management fees on gross assets grow with leverage — this is a non-linear relationship
+4. **Ignoring the lookback:** Incentive fee lookback provisions significantly reduce fee drag in up-cycles; include them
+5. **Year-end NAV as denominator:** Use weighted average shares for per-share calculations, not period-end
+
+## Sources & Filings
+
+1. Investment Company Act of 1940 — 17 CFR Part 270
+2. SEC EDGAR — BDC 10-K and 10-Q filings (Annual and Quarterly Reports)
+3. ARCC Q4 2025 Earnings Supplement — Ares Capital Corporation, February 2026
+4. HTGC Q4 2025 Earnings Supplement — Hercules Capital, February 2026

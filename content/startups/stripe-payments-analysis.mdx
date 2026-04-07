@@ -1,0 +1,144 @@
+---
+title: "Stripe — Payments Infrastructure Dominance"
+slug: "stripe-payments-analysis"
+company: "Stripe"
+stage: "Late Stage / Pre-IPO"
+sector: "Fintech"
+lastValuation: "$70B (2023 tender)"
+totalRaised: "$8.7B"
+founded: 2010
+hq: "San Francisco, CA"
+analysisType: "startup-deep-dive"
+date: "2026-05-15"
+author: "Jon Anderson"
+status: "published"
+disclosure: "No position."
+metrics:
+  revenue: "$20B+ (est. 2025)"
+  revenueGrowth: "20% YoY"
+  tpv: "$1.4T+"
+  employees: "~8,000"
+tags:
+  - "Fintech"
+  - "Payments"
+  - "Pre-IPO"
+  - "Infrastructure"
+---
+
+## Company Overview
+
+Stripe is the dominant payments infrastructure provider for internet businesses, processing an estimated $1.4T in total payment volume (TPV) in 2025. Founded in 2010 by Patrick and John Collison, the company has compounded from a developer-friendly payment API into a comprehensive financial operating system for businesses.
+
+This analysis evaluates Stripe's competitive positioning, unit economics, and potential valuation range ahead of an anticipated public market debut.
+
+## Business Model
+
+Stripe's revenue model is primarily volume-based:
+
+- **Core payments:** 2.9% + $0.30 per successful card transaction (blended effective rate ~2.0% after enterprise pricing)
+- **Stripe Billing / Revenue Recognition:** SaaS subscription management
+- **Stripe Capital:** Merchant cash advances (spreads on loan book)
+- **Stripe Atlas / Tax / Treasury:** Platform services (recurring revenue)
+
+Take rate on TPV has compressed from ~2.5% (2015) to an estimated ~1.4% (2025) as enterprise mix has grown, but absolute revenue growth has more than compensated.
+
+## Competitive Positioning
+
+<CompetitorMap
+  xLabel="Developer Experience"
+  yLabel="Enterprise Capability"
+  companies={[
+    { name: "Stripe", x: 95, y: 85 },
+    { name: "Adyen", x: 60, y: 92 },
+    { name: "Braintree (PayPal)", x: 70, y: 75 },
+    { name: "Square", x: 65, y: 45 },
+    { name: "Checkout.com", x: 72, y: 80 },
+    { name: "Worldpay", x: 35, y: 80 },
+  ]}
+/>
+
+Stripe's defensible moat rests on three pillars:
+
+**1. Developer Distribution:** The Stripe API is embedded in an estimated 1M+ businesses globally. Switching costs are high — payment integrations touch checkout flows, subscription logic, reconciliation systems, and financial reporting. A migration to a competing platform typically requires 3–6 months of engineering time.
+
+**2. Data Network Effects:** Processing $1.4T in annual TPV generates proprietary fraud detection data that improves with scale. Stripe Radar (fraud ML model) has a fundamentally lower false positive rate than competitors at equivalent fraud catch rates — a direct function of training data volume.
+
+**3. Platform Expansion:** Each new product (Atlas, Treasury, Capital, Tax) increases switching costs and ARPU. Average revenue per enterprise customer has grown from an estimated $180K (2020) to $400K+ (2025).
+
+<Callout type="insight" title="The Infrastructure Bet">
+Stripe is not primarily a payments company — it is the AWS for financial services. The payments processing business funds the build-out of a horizontal financial infrastructure platform that could eventually power banking, lending, and treasury management for millions of businesses.
+</Callout>
+
+## Funding Timeline
+
+<FundingTimeline
+  rounds={[
+    { date: "2010-09", series: "Seed", amount: "$2M", valuation: "$10M", leadInvestor: "Y Combinator / SV Angel" },
+    { date: "2011-02", series: "Series A", amount: "$18M", valuation: "$100M", leadInvestor: "Sequoia Capital" },
+    { date: "2012-07", series: "Series B", amount: "$20M", valuation: "$500M", leadInvestor: "General Catalyst" },
+    { date: "2014-01", series: "Series C", amount: "$80M", valuation: "$1.75B", leadInvestor: "Founders Fund" },
+    { date: "2016-11", series: "Series D", amount: "$150M", valuation: "$9.2B", leadInvestor: "CapitalG / General Catalyst" },
+    { date: "2019-09", series: "Series E/F", amount: "$250M", valuation: "$35B", leadInvestor: "Andreessen Horowitz" },
+    { date: "2021-03", series: "Series H", amount: "$600M", valuation: "$95B", leadInvestor: "Allianz / Axa / Sequoia" },
+    { date: "2023-03", series: "Tender", amount: "$6.5B", valuation: "$50B", leadInvestor: "Goldman Sachs / Temasek" },
+  ]}
+/>
+
+## Financial Model
+
+Estimated financials (not confirmed by company):
+
+<FinancialTable
+  headers={["Metric", "2022A", "2023A", "2024A", "2025E", "2026E"]}
+  rows={[
+    ["TPV ($B)", "$817", "$980", "$1,180", "$1,410", "$1,640"],
+    ["Revenue ($B)", "$11.4", "$13.7", "$17.1", "$20.5", "$24.0"],
+    ["Revenue Growth", "—", "20%", "25%", "20%", "17%"],
+    ["Gross Profit ($B)", "$5.7", "$7.0", "$9.1", "$11.3", "$13.6"],
+    ["Gross Margin", "50%", "51%", "53%", "55%", "57%"],
+    ["Adj. EBITDA ($M)", "$200", "$750", "$1,800", "$3,200", "$5,000"],
+    ["EBITDA Margin", "1.8%", "5.5%", "10.5%", "15.6%", "20.8%"],
+    ["FCF ($M)", "$150", "$620", "$1,500", "$2,700", "$4,200"],
+  ]}
+  caption="Estimates based on public reporting, industry sources, and analyst estimates. Not confirmed by Stripe."
+/>
+
+## Valuation Framework
+
+<ScenarioTable
+  rows={[
+    { label: "2026E Revenue", bear: "$22.0B", base: "$24.0B", bull: "$26.5B" },
+    { label: "Revenue multiple", bear: "8x", base: "12x", bull: "18x" },
+    { label: "Implied EV", bear: "$176B", base: "$288B", bull: "$477B" },
+    { label: "Shares outstanding (est.)", bear: "2.5B", base: "2.5B", bull: "2.5B" },
+    { label: "Implied price/share", bear: "$70", base: "$115", bull: "$191" },
+    { label: "vs. last tender ($70B / ~$28/share est.)", bear: "+2.5x", base: "+4.1x", bull: "+6.8x" },
+  ]}
+/>
+
+**Bear Case ($70/share equivalent):** Revenue growth decelerates to 10% as competition from Adyen and PayPal Braintree intensifies in enterprise; margin expansion stalls; multiple compresses to 8x forward revenue.
+
+**Base Case ($115/share):** 17–20% revenue CAGR sustained through 2026; EBITDA margin expands to 20%+ as platform businesses scale; IPO at 12x forward revenue consistent with Adyen's public trading range.
+
+**Bull Case ($191/share):** Platform adjacencies (Stripe Capital, Treasury) contribute $4B+ in revenue at higher margins; international expansion accelerates; 18x forward revenue reflects premium for best-in-class fintech infrastructure.
+
+## Key Risks
+
+<Callout type="warning" title="Primary Risk Factors">
+1. **Regulatory:** Payment processing is heavily regulated globally. EU interchange fee regulation, data localization laws, and potential antitrust scrutiny on network rules pose compliance risk.
+
+2. **Competition:** Adyen, PayPal/Braintree, and domestic champions (Razorpay in India, Paymob in MENA) are formidable in specific geographies. Stripe's global ambitions face localization challenges.
+
+3. **Credit risk (Stripe Capital):** The embedded lending business introduces credit cycle exposure not present in pure-play processing. A consumer credit downturn could generate unexpected losses.
+
+4. **IPO timing:** Stripe has passed on multiple IPO windows. Prolonged private status increases secondary market illiquidity and may affect employee retention.
+</Callout>
+
+## Sources & Filings
+
+1. Stripe Press — Official company announcements and blog posts (2020–2026)
+2. The Information — "Stripe's Revenue Hit $14.4 Billion in 2023" (March 2024)
+3. Bloomberg — Stripe valuation and tender offer reporting (2023)
+4. Adyen N.V. 2025 Annual Report — Competitive benchmarking
+5. McKinsey Global Payments Report 2025 — TPV and market share estimates
+6. SEC EDGAR — Stripe has not filed public financial statements
