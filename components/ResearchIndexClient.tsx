@@ -96,14 +96,15 @@ export default function ResearchIndexClient({ posts }: ResearchIndexClientProps)
     <div className="pt-20 pb-20">
       {/* Header */}
       <div className="container mb-10">
+        <p className="section-eyebrow mb-2">Public Market Coverage</p>
         <h1 className="font-garamond text-5xl font-bold mb-4">Research</h1>
-        <p className="text-text-secondary max-w-2xl">
+        <p className="text-text-secondary max-w-2xl mb-0">
           Deep dives, earnings updates, and methodology notes on public companies. Every claim sourced to filings.
         </p>
       </div>
 
       {/* Sticky Filter Bar */}
-      <div className="sticky top-16 z-40 bg-bg-primary border-b border-border-light mb-10">
+      <div className="sticky top-16 z-40 bg-bg-primary/95 backdrop-blur-sm border-b border-border-light mb-10">
         <div className="container py-4">
           <div className="flex flex-wrap gap-4 items-center">
             {/* Search */}
@@ -154,7 +155,7 @@ export default function ResearchIndexClient({ posts }: ResearchIndexClientProps)
       {/* Results */}
       <div className="container">
         <div className="flex items-center justify-between mb-6">
-          <p className="text-text-muted text-sm">
+          <p className="text-text-muted text-sm font-semibold">
             {filtered.length} {filtered.length === 1 ? 'result' : 'results'}
           </p>
           {hasFilters && (

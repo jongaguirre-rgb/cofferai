@@ -22,26 +22,31 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 h-16 bg-bg-primary border-b border-border-light transition-shadow duration-200 hover:shadow-sm">
+      <nav className="fixed top-0 left-0 right-0 z-50 h-16 glass-panel border-b border-border-light/90 transition-shadow duration-200">
         <div className="container h-full flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="font-garamond text-2xl font-bold text-text-primary hover:!no-underline">
-            cofferai
+          <Link href="/" className="font-garamond text-2xl font-bold text-text-primary hover:!no-underline leading-none">
+            cofferai<span className="text-accent-blue">.</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-12">
+          <div className="hidden md:flex items-center gap-9">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`font-sans text-nav font-nav uppercase tracking-wider transition-colors hover:!no-underline ${
+                className={`relative py-1 font-sans text-nav font-nav uppercase tracking-wider transition-colors hover:!no-underline ${
                   isActive(link.href)
-                    ? 'text-text-primary border-b-2 border-accent-blue'
+                    ? 'text-text-primary'
                     : 'text-text-secondary hover:text-text-primary'
                 }`}
               >
                 {link.label}
+                <span
+                  className={`absolute left-0 -bottom-2 h-[2px] bg-accent-blue transition-all duration-200 ${
+                    isActive(link.href) ? 'w-full opacity-100' : 'w-0 opacity-0'
+                  }`}
+                />
               </Link>
             ))}
           </div>
@@ -59,14 +64,16 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-16 z-40 md:hidden bg-bg-primary flex flex-col items-center justify-start pt-12 gap-12">
+        <div className="fixed inset-0 top-16 z-40 md:hidden bg-bg-primary/95 backdrop-blur-sm flex flex-col items-center justify-start pt-10 px-6 gap-5 soft-grid-bg">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className={`font-sans text-2xl font-nav uppercase transition-colors hover:!no-underline ${
-                isActive(link.href) ? 'text-accent-blue' : 'text-text-primary'
+              className={`w-full max-w-sm border border-border-light px-4 py-3 text-center font-sans text-xl font-nav uppercase transition-colors hover:!no-underline ${
+                isActive(link.href)
+                  ? 'text-accent-blue bg-bg-secondary'
+                  : 'text-text-primary bg-bg-primary'
               }`}
             >
               {link.label}

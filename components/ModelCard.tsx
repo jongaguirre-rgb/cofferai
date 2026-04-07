@@ -23,20 +23,22 @@ export default function ModelCard({ model }: ModelCardProps) {
 
   return (
     <div className="card flex flex-col">
-      <FileSpreadsheet size={32} className="text-accent-blue mb-4" />
+      <div className="w-11 h-11 border border-border-light bg-bg-primary flex items-center justify-center mb-4">
+        <FileSpreadsheet size={22} className="text-accent-blue" />
+      </div>
 
-      <h3 className="font-sans font-semibold text-text-primary mb-1 text-sm break-all">
+      <h3 className="font-sans font-semibold text-text-primary mb-1 text-sm break-all leading-snug">
         {model.filename}
       </h3>
 
       <p className="text-text-secondary text-sm mb-1">{model.company}</p>
 
-      <p className="text-text-muted text-xs mb-4">
+      <p className="text-text-muted text-xs mb-5">
         v{model.version} · {model.lastUpdated} · {model.fileSize}
       </p>
 
       {analysisHref && (
-        <p className="text-xs mb-4">
+        <p className="text-xs mb-5">
           <Link href={analysisHref} className="text-accent-blue hover:text-accent-blue-light">
             View Analysis →
           </Link>

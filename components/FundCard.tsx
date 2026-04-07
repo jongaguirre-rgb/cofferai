@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
 import { FundPost } from '@/types/content';
 
 interface FundCardProps {
@@ -12,10 +13,12 @@ export default function FundCard({ post }: FundCardProps) {
     'fund-comparison': 'Comparison',
   };
 
+  const excerpt = post.content.replace(/[#*`>\[\]]/g, '').replace(/\s+/g, ' ').trim().substring(0, 155);
+
   return (
-    <Link href={`/funds/${post.slug}`}>
-      <div className="card h-full flex flex-col hover:shadow-md transition-shadow">
-        <div className="mb-3 flex gap-2">
+    <Link href={`/funds/${post.slug}`} className="h-full hover:!no-underline">
+      <article className="card h-full flex flex-col">
+        <div className="mb-4 flex gap-2">
           <span className="inline-block text-xs font-bold uppercase tracking-wider px-2 py-1 bg-accent-blue/20 text-accent-blue rounded-none">
             {typeLabel[post.analysisType]}
           </span>
@@ -24,7 +27,7 @@ export default function FundCard({ post }: FundCardProps) {
           </span>
         </div>
 
-        <h3 className="font-garamond text-xl font-bold mb-2 text-text-primary">
+        <h3 className="font-garamond text-2xl font-bold mb-2 text-text-primary leading-tight">
           {post.title}
         </h3>
 
@@ -57,21 +60,25 @@ export default function FundCard({ post }: FundCardProps) {
           </div>
         </div>
 
-        <p className="text-text-secondary text-sm mb-4 flex-grow line-clamp-2">
-          {post.content.substring(0, 160)}...
+        <p className="text-text-secondary text-sm mb-5 flex-grow line-clamp-3">
+          {excerpt}...
         </p>
 
-        <div className="flex flex-wrap gap-2 mt-auto">
+        <div className="flex flex-wrap gap-2 mt-auto mb-4">
           {post.tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="text-xs bg-bg-secondary text-text-secondary px-2 py-1 rounded-none"
+              className="text-[11px] bg-bg-secondary text-text-secondary px-2 py-1 rounded-none uppercase tracking-wider"
             >
               {tag}
             </span>
           ))}
         </div>
-      </div>
+
+        <div className="pt-3 border-t border-border-light text-accent-blue text-sm font-semibold inline-flex items-center gap-1">
+          Open Analysis <ArrowUpRight size={14} />
+        </div>
+      </article>
     </Link>
   );
 }
